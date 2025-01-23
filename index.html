@@ -107,23 +107,23 @@
         const targetText = typewriterElement.textContent.trim();
         let currentIndex = 0;
         let interval;
-        const delayBetweenLoops = 5000; // Waktu jeda (ms) sebelum looping dimulai kembali
+        const delayBetweenLoops = 5000; // The delay time (ms) before the loop starts again
 
-        // Fungsi untuk menghasilkan huruf acak
+        // Function to generate random letters
         function getRandomChar() {
           const chars =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
           return chars.charAt(Math.floor(Math.random() * chars.length));
         }
 
-        // Fungsi animasi huruf acak
+        // Random letter animation function
         function animateRandomText() {
           if (currentIndex < targetText.length) {
             const visibleText = targetText.substring(0, currentIndex);
             const randomChar = getRandomChar();
             typewriterElement.textContent = visibleText + randomChar;
 
-            // Tambahkan karakter sebenarnya setelah beberapa waktu
+            // Add real character after some time
             setTimeout(() => {
               typewriterElement.textContent = targetText.substring(
                 0,
@@ -132,18 +132,18 @@
               currentIndex++;
             }, 100);
           } else {
-            clearInterval(interval); // Hentikan animasi setelah selesai
+            clearInterval(interval); // Stop the animation when finished
 
-            // Tunggu beberapa detik lalu ulangi
+            // Wait a few seconds then repeat
             setTimeout(() => {
               currentIndex = 0;
-              typewriterElement.textContent = ""; // Kosongkan teks sebelum looping
+              typewriterElement.textContent = ""; // Clear text before looping
               interval = setInterval(animateRandomText, 150);
             }, delayBetweenLoops);
           }
         }
 
-        // Jalankan animasi secara interval
+        // Run animations at intervals
         interval = setInterval(animateRandomText, 200);
       });
     </script>
